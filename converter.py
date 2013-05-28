@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 import sys
 import os.path
 
-base_url = 'http://digitalwords.net/?p='
+base_url = 'http://YOUR-DOMAIN.NET/?p='
 
 comment_file = sys.argv[1]
 comment_dir = sys.argv[2]
@@ -46,6 +46,8 @@ def get_comments(file_name):
 						comment['name'] = sanitize_field(data)
 					elif field == 'content':
 						comment['comment'] = sanitize_field(data)
+					elif field == 'author_url':
+						comment['link'] = sanitize_field(data)
 					else:
 						comment[field] = sanitize_field(data)
 			if approved:
